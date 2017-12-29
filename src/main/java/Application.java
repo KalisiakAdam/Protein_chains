@@ -1,29 +1,20 @@
-import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
 public class Application {
 
-    private boolean[] pair;
-    List<String> listOfChains;
+    private List<String> listOfChains;
 
-
-    public void run() throws FileNotFoundException {
-        File file = new File("src/main/lancuchy_bialkowe.txt");
-        IFileReader fileReading = new FileReader(file);
-        listOfChains = fileReading.readFile();
-
-    }
-
-    public String sortedArray(String input){
+    private String sortedArray(String input){
         char[] arrayOfChars = input.toCharArray();
         Arrays.sort(arrayOfChars);
         return new String(arrayOfChars);
     }
 
 
-    public boolean changePossible(String s1, String s2){
+    private boolean changePossible(String s1, String s2){
 
         int position = 0;
         while(position < s2.length()-1){
@@ -36,8 +27,8 @@ public class Application {
         return true;
     }
 
-    public boolean[] numbersOfPairs() {
-        pair = new boolean[listOfChains.size()/2];
+    private boolean[] numbersOfPairs() {
+        boolean[] pair = new boolean[listOfChains.size() / 2];
         int pairPosition = 0;
         for(int i = 0; i < listOfChains.size(); i+=2){
           pair[pairPosition] =  changePossible(listOfChains.get(i),listOfChains.get(i+1));
@@ -52,7 +43,9 @@ public class Application {
         long startTime = System.currentTimeMillis();
 
         Application application = new Application();
-        application.run();
+        IFileReader fileReading = new FileReaderImpArgs(args);
+        application.listOfChains = fileReading.readFile();
+
         boolean[] result = application.numbersOfPairs();
 
         long stopTime = System.currentTimeMillis();
@@ -62,11 +55,5 @@ public class Application {
         for (boolean x : result){
             System.out.print(x + ", ");
         }
-
-
-
-
     }
-
-
 }

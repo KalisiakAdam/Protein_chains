@@ -2,13 +2,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class FileReader implements IFileReader {
+public class FileReaderImpMain implements IFileReader {
 
     private File file;
     private List<String> listOfLines;
     private Scanner in;
 
-    FileReader(File file) {
+    FileReaderImpMain(File file) {
         this.file = file;
     }
 
